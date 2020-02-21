@@ -1,0 +1,39 @@
+create table user_1 (
+id serial primary KEY,
+last_name varchar not null unique ,
+name varchar not null unique,
+age integer not null 
+);
+create table product (
+id serial primary key ,
+p_name varchar  not null,
+p_price integer not null,
+user_id integer references user_1 (id)
+);
+
+insert  into user_1 (last_name , name , age) values ('Petrov','Nikita', 19);
+insert  into product (p_name,p_price,user_id)values ('phone',1000,2)
+
+--2. Можно ли выполнить следующую команду (True / False)
+--FROM Customers
+--SELECT last_name , first_name    --false
+
+--3. Напишите query который вытащит 2 колонки из таблицы Продукт
+select * from product p2 
+order by id desc limit 2;
+
+--4. Можно ли выполнить следующую команду (True / False)
+--SeleCT   strt_date, monthly_payment
+--FROM   packages                       ---(FALSE)
+
+--5. Можно ли выполнить следующую команду (True / False)
+--1 SeleCT last_NAME , fiRST_NamE , FROM customers    -- (true)
+
+--6.
+select * from product p2 
+right join user_1 us
+on p2.user_id = us.id;
+
+select * from  product p2 
+inner join user_1 us
+on p2.user_id = us.id;
